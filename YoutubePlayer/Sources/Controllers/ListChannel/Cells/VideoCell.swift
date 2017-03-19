@@ -26,26 +26,6 @@ class BasicCell:UICollectionViewCell{
 
 
 class VideoCell: BasicCell {
-   
-    
-    
-    func setupThumbnailImage(){
-        if let thumbnailImageURl = video?.thumbnailImageName{
-            
-            let url = URL(string: thumbnailImageURl)
-            let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                
-                if let err = error {
-                    print(err)
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.thumbnailImageView.image = UIImage(data: data!)
-                }
-            })
-            task.resume()
-        }
-    }
     
     var video: Video? {
         
@@ -55,20 +35,18 @@ class VideoCell: BasicCell {
                 titleLabel.text = title
             }
             
-            setupThumbnailImage()
-//            if let thumbnailImageName = video?.thumbnailImageName{
-//                thumbnailImageView.image = UIImage(named: thumbnailImageName)
-//            }
+            
+            if let thumbnailImageName = video?.thumbnailImageName{
+               self.thumbnailImageView.loadImageUsingUrlString(url: thumbnailImageName )
+            }
             
             if let channel = video?.channel{
                 if let profileImageName = channel.profileImageName{
-                    userProfileImageView.image = UIImage(named:profileImageName)
+                    userProfileImageView.loadImageUsingUrlString(url: profileImageName)
                 }
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
-                
-                
                 
                 if let nameChannel = channel.name, let numberOfView = video?.numberOfViews {
                     let subtitleText = "\(nameChannel) • \(numberFormatter.string(from: numberOfView)!) • 2 years"
@@ -106,6 +84,7 @@ class VideoCell: BasicCell {
         imageView.image = UIImage(named: "taylor_swift_profile")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

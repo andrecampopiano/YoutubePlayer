@@ -34,13 +34,22 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
                     let video = Video()
                     video.title = dictionary["title"] as? String
                     video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
+                    
+                    let channelDicitionary = dictionary["channel"] as! [String:AnyObject]
+                    
+                    let channel = Channel()
+                    channel.name = channelDicitionary["name"] as? String
+                    channel.profileImageName = channelDicitionary["profile_image_name"] as? String
+                    video.channel = channel
                     self.videos?.append(video)
                     
                    
                 }
                 
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
                 
-                print(json)
                 
                 
             }catch let jsonErr {
