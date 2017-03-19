@@ -9,29 +9,6 @@
 import UIKit
 
 class ListChannelViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-//    var videos: [Video] = {
-//        
-//        var taylorChannel = Channel()
-//        taylorChannel.name = "Taylor Swift Channel"
-//        taylorChannel.profileImageName = "taylor_swift_profile"
-//        
-//        var blankSpaceVideo = Video()
-//        blankSpaceVideo.title = " Taylor Swift - Blank Space"
-//        blankSpaceVideo.thumbnailImageName =  "taylor-swift-2"
-//        blankSpaceVideo.channel = taylorChannel
-//        blankSpaceVideo.numberOfViews = 234893312
-//
-//        
-//        var badBloodVideo = Video()
-//        badBloodVideo.title = " Taylor Swift - Bad Blood featuring Kendrick Lamar"
-//        badBloodVideo.thumbnailImageName =  "taylor_swift_bad_blood"
-//        badBloodVideo.channel = taylorChannel
-//        badBloodVideo.numberOfViews = 2143254434
-//        
-//        
-//        return [blankSpaceVideo, badBloodVideo]
-//    }()
     
     var videos:[Video]?
     
