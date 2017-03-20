@@ -36,6 +36,7 @@ class SettingCell: BaseCell {
         let label = UILabel()
         label.text = "Setting"
         label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .center
         return label
         
     }()

@@ -99,11 +99,24 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         navigationItem.rightBarButtonItems = [moreButton, searchBarButtomItem]
     }
     
-    let settingsLauncher = SettingsLauncher()
+    lazy var settingsLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.listChannelController = self
+        return launcher
+    }()
     
     func handleMore(){
-        settingsLauncher.showSettings()
         
+        settingsLauncher.showSettings()
+    }
+    
+    func showControllerForSettings(setting:Setting) {
+        let dummySettingsVewController = UIViewController()
+        dummySettingsVewController.navigationItem.title = setting.name
+        dummySettingsVewController.view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.pushViewController(dummySettingsVewController, animated: true)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     func handleSearch(){

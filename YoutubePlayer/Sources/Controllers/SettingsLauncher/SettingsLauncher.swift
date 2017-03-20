@@ -19,6 +19,11 @@ class Setting :NSObject{
 }
 
 
+enum SettingName:String{
+    case Cancel = "Cancel"
+    
+}
+
 class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     let blackView = UIView()
@@ -39,6 +44,8 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
         cv.backgroundColor = UIColor.white
         return cv
     }()
+    
+    var listChannelController: ListChannelViewController?
     
     func showSettings(){
         
@@ -67,15 +74,18 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
         
     }
     
-    func handleDismiss(){
-        UIView.animate(withDuration: 0.5) {
+    func handleDismiss(setting:Setting){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             
             if let window = UIApplication.shared.keyWindow{
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.size.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
+        }) {( completion:Bool) in
             
-            
+            if setting.name != "" && setting.name != "Cancel" {
+                self.listChannelController?.showControllerForSettings(setting: setting)
+            }
         }
     }
     
@@ -104,19 +114,9 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let setting = settings[indexPath.item]
+        let setting = self.settings[indexPath.item]
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.blackView.alpha = 0
-            
-            if let window = UIApplication.shared.keyWindow{
-                self.collectionView.frame = CGRect(x: 0, y: window.frame.size.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-            }
-        }) {( completion:Bool) in
-        
-        
-        
-        }
+        handleDismiss(setting :setting)
         
     }
     
