@@ -21,22 +21,15 @@ class SettingCell: BaseCell {
 
     var setting:Setting?{
         didSet{
-            
             if let name = setting?.name {
                 nameLabel.text = name
             }
-            
             if let imageName = setting?.imageName {
                 iconImageView.image = UIImage(named:imageName)?.withRenderingMode(.alwaysTemplate)
                 iconImageView.tintColor = UIColor.darkGray
             }
-            
-            
-            
         }
     }
-    
-    
     
     let nameLabel:UILabel = {
        

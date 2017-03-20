@@ -103,6 +103,23 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = settings[indexPath.item]
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            
+            if let window = UIApplication.shared.keyWindow{
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.size.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+        }) {( completion:Bool) in
+        
+        
+        
+        }
+        
+    }
+    
     override init(){
         super.init()
         
