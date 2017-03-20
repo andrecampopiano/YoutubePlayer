@@ -68,7 +68,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
 
 }
 
-class MenuCell:BasicCell{
+class MenuCell:BaseCell{
     
     let colorDeselect:UIColor = {
         let color = UIColor.rgb(red: 91, green: 14, blue: 13)

@@ -96,15 +96,18 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         let moreImage = UIImage(named:"nav_more_icon")?.withRenderingMode(.alwaysOriginal)
         let moreButton = UIBarButtonItem(image: moreImage , style: .plain, target: self , action:#selector(handleMore))
         
-        navigationItem.rightBarButtonItems = [searchBarButtomItem, moreButton]
+        navigationItem.rightBarButtonItems = [moreButton, searchBarButtomItem]
+    }
+    
+    let settingsLauncher = SettingsLauncher()
+    
+    func handleMore(){
+        settingsLauncher.showSettings()
+        
     }
     
     func handleSearch(){
         print(1234)
-    }
-    
-    func handleMore(){
-        print(4567)
     }
     
     let menuBar: MenuBar = {

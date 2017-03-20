@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BasicCell:UICollectionViewCell{
+class BaseCell:UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +25,7 @@ class BasicCell:UICollectionViewCell{
 }
 
 
-class VideoCell: BasicCell {
+class VideoCell: BaseCell {
     
     var video: Video? {
         
@@ -37,12 +37,12 @@ class VideoCell: BasicCell {
             
             
             if let thumbnailImageName = video?.thumbnailImageName{
-               self.thumbnailImageView.loadImageUsingUrlString(url: thumbnailImageName )
+               self.thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageName )
             }
             
             if let channel = video?.channel{
                 if let profileImageName = channel.profileImageName{
-                    userProfileImageView.loadImageUsingUrlString(url: profileImageName)
+                    userProfileImageView.loadImageUsingUrlString(urlString: profileImageName)
                 }
                 
                 let numberFormatter = NumberFormatter()
@@ -71,16 +71,16 @@ class VideoCell: BasicCell {
         }
     }
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "taylor-swift-2")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "taylor_swift_profile")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
