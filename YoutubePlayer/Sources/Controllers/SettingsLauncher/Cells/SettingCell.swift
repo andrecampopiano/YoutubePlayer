@@ -22,7 +22,7 @@ class SettingCell: BaseCell {
     var setting:Setting?{
         didSet{
             if let name = setting?.name {
-                nameLabel.text = name
+                nameLabel.text = name.rawValue
             }
             if let imageName = setting?.imageName {
                 iconImageView.image = UIImage(named:imageName)?.withRenderingMode(.alwaysTemplate)
@@ -36,7 +36,6 @@ class SettingCell: BaseCell {
         let label = UILabel()
         label.text = "Setting"
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textAlignment = .center
         return label
         
     }()

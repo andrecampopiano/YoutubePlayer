@@ -9,10 +9,10 @@
 import UIKit
 
 class Setting :NSObject{
-    let name: String
+    let name: SettingName
     let imageName: String
     
-    init(name: String, imageName:String){
+    init(name: SettingName, imageName:String){
         self.name = name
         self.imageName = imageName
     }
@@ -21,7 +21,11 @@ class Setting :NSObject{
 
 enum SettingName:String{
     case Cancel = "Cancel"
-    
+    case Settings = "Settings"
+    case TermsPrivacy = "Terms & privacy policy"
+    case SendFeedback = "Send Feedback"
+    case Help = "Help"
+    case SwitchAccount = "Switch Account"
 }
 
 class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -33,7 +37,15 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
     let cellHeight:CGFloat = 40
     
     let settings: [Setting] = {
-        return [Setting(name:"Settings", imageName:"settings"),Setting(name:"Terms & privacy policy", imageName:"privacy"),Setting(name:"Send Feedback", imageName:"feedback"),Setting(name:"Help", imageName:"help"),Setting(name:"Switch Account", imageName:"switch_account"),Setting(name:"Cancel", imageName:"cancel")]
+        let settingsSetting = Setting(name: .Settings, imageName: "settings")
+        let cancelSetting = Setting(name: .Cancel, imageName: "cancel")
+        let termSetting = Setting(name:.TermsPrivacy, imageName:"privacy")
+        let feedSetting = Setting(name:.SendFeedback, imageName:"feedback")
+        let helpSetting = Setting(name:.Help, imageName:"help")
+        let accountSetting = Setting(name:.SwitchAccount, imageName:"switch_account")
+        
+        
+        return [settingsSetting, termSetting, feedSetting , helpSetting, accountSetting, cancelSetting]
     }()
     
     let collectionView: UICollectionView = {
@@ -83,7 +95,7 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
             }
         }) {( completion:Bool) in
             
-            if setting.name != "" && setting.name != "Cancel" {
+            if setting.name != .Cancel {
                 self.listChannelController?.showControllerForSettings(setting: setting)
             }
         }

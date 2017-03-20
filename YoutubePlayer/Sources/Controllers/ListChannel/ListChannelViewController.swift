@@ -112,7 +112,7 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     
     func showControllerForSettings(setting:Setting) {
         let dummySettingsVewController = UIViewController()
-        dummySettingsVewController.navigationItem.title = setting.name
+        dummySettingsVewController.navigationItem.title = setting.name.rawValue
         dummySettingsVewController.view.backgroundColor = UIColor.white
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.pushViewController(dummySettingsVewController, animated: true)
