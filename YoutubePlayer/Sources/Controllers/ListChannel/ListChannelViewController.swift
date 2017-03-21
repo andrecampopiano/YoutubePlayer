@@ -13,51 +13,11 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     var videos:[Video]?
     
     func fetchVideos(){
-        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        ApiService.sharedInstance.fetchVideos { (videos:[Video]) in
             
-            if  let err = error {
-                print(err)
-                return
-            }
-            do{
-               let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                
-                self.videos = [Video]()
-                
-                
-                
-                for dictionary in json as! [[String:AnyObject]]{
-                    
-                    let video = Video()
-                    video.title = dictionary["title"] as? String
-                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
-                    
-                    let channelDicitionary = dictionary["channel"] as! [String:AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDicitionary["name"] as? String
-                    channel.profileImageName = channelDicitionary["profile_image_name"] as? String
-                    video.channel = channel
-                    self.videos?.append(video)
-                    
-                   
-                }
-                
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
-                }
-                
-                
-                
-            }catch let jsonErr {
-                print(jsonErr)
-            }
-            
+            self.videos = videos
+            self.collectionView?.reloadData()
         }
-        task.resume()
     }
     
     override func viewDidLoad() {
@@ -85,7 +45,7 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         setupNavBarButtons()
         
     }
-
+    
     func setupNavBarButtons(){
         
         //Botao de procurar
@@ -129,18 +89,29 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     }()
     
     func setupMenuBar(){
+        
+        navigationController?.hidesBarsOnSwipe = true
+        
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: redView)
+        
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format:"H:|[v0]|" , views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        
+        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videos?.count ?? 0
     }
-
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-
+        
         if let video = videos?[indexPath.item]{
             cell.video = video
         }
@@ -157,8 +128,8 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         
         return 0
     }
-
-
+    
+    
 }
 
 
