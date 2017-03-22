@@ -9,11 +9,11 @@
 import UIKit
 
 class ApiService: NSObject {
-
+    
     static let sharedInstance = ApiService()
     
-    func fetchVideos(completion: @escaping ([Video])->()){
-        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else { return }
+    func fetchVideosWithEndPoint(endPoint:String,completion: @escaping ([Video])->()){
+        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/\(endPoint).json") else { return }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
@@ -59,7 +59,24 @@ class ApiService: NSObject {
             
         }
         task.resume()
-
+        
     }
     
+    
+    func fetchFeedVideos(completion: @escaping ([Video])->()){
+        let endPoint = "home"
+        fetchVideosWithEndPoint(endPoint: endPoint, completion:completion)
+    }
+    
+    func fetchTrendingVideos(completion: @escaping ([Video])->()){
+        let endPoint = "trending"
+        fetchVideosWithEndPoint(endPoint: endPoint, completion:completion)
+        
+    }
+    
+    func fetchSubscriptionVideos(completion: @escaping ([Video])->()){
+        let endPoint = "subscriptions"
+        fetchVideosWithEndPoint(endPoint: endPoint, completion: completion)
+        
+    }
 }

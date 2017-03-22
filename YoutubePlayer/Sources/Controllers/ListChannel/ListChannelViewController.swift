@@ -12,7 +12,9 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     
     var videos:[Video]?
     
-    let cellId = "cellId"
+    let feedCellId = "feedCellId"
+    let trendingCellId = "trendingCell"
+    let subscriptionCellId = "subscriptionCell"
     
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
@@ -43,7 +45,9 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         
         collectionView?.backgroundColor = UIColor.white
         
-        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: feedCellId)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
         
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
@@ -142,10 +146,20 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        var cell = UICollectionViewCell()
         
-        
+        switch indexPath.item {
+        case 0:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath)
+        case 1:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellId, for: indexPath)
+        case 2:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: subscriptionCellId, for: indexPath)
+        default:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath)
+        }
         return cell
+        
     }
     
     
