@@ -36,19 +36,19 @@ class VideoCell: BaseCell {
             }
             
             
-            if let thumbnailImageName = video?.thumbnailImageName{
+            if let thumbnailImageName = video?.thumbnail_image_name{
                self.thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageName )
             }
             
             if let channel = video?.channel{
-                if let profileImageName = channel.profileImageName{
+                if let profileImageName = channel.profile_image_name{
                     userProfileImageView.loadImageUsingUrlString(urlString: profileImageName)
                 }
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
                 
-                if let nameChannel = channel.name, let numberOfView = video?.numberOfViews {
+                if let nameChannel = channel.name, let numberOfView = video?.number_of_views {
                     let subtitleText = "\(nameChannel) • \(numberFormatter.string(from: numberOfView)!) • 2 years"
                     subtitleTextView.text = subtitleText
                 }

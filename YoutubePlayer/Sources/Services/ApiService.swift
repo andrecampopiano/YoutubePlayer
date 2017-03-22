@@ -22,41 +22,14 @@ class ApiService: NSObject {
                 return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                
-                var videos = [Video]()
-                
-                
-                
-                for dictionary in json as! [[String:AnyObject]]{
-                    
-                    let video = Video()
-                    video.title = dictionary["title"] as? String
-                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
-                    
-                    let channelDicitionary = dictionary["channel"] as! [String:AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDicitionary["name"] as? String
-                    channel.profileImageName = channelDicitionary["profile_image_name"] as? String
-                    video.channel = channel
-                    videos.append(video)
-                    
-                    
+                if let unwrappedData = data, let jsonDictionaries = try JSONSerialization.jsonObject(with: unwrappedData, options: .mutableContainers) as? [[String:AnyObject]] {
+                    DispatchQueue.main.async {
+                        completion(jsonDictionaries.map({return Video(dictionary: $0)}))
+                    }
                 }
-                
-                DispatchQueue.main.async {
-                    completion(videos)
-                    
-                }
-                
-                
-                
             }catch let jsonErr {
                 print(jsonErr)
             }
-            
         }
         task.resume()
         
@@ -64,7 +37,7 @@ class ApiService: NSObject {
     
     
     func fetchFeedVideos(completion: @escaping ([Video])->()){
-        let endPoint = "home"
+        let endPoint = "home_num_likes"
         fetchVideosWithEndPoint(endPoint: endPoint, completion:completion)
     }
     
