@@ -14,6 +14,7 @@ class VideoPlayerView: UIView{
     let activityIndicatorView:UIActivityIndicatorView = {
        let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         aiv.translatesAutoresizingMaskIntoConstraints = false
+        aiv.startAnimating()
         return aiv
     }()
     
@@ -33,6 +34,11 @@ class VideoPlayerView: UIView{
         controlsContainerView.frame  = frame
         addSubview(controlsContainerView)
         
+        controlsContainerView.addSubview(activityIndicatorView)
+        activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        
         backgroundColor = .black
         
         
@@ -40,6 +46,7 @@ class VideoPlayerView: UIView{
     }
     
     func setupPlayerView(){
+        
         let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
         
         if let url = URL(string:urlString){
@@ -48,10 +55,16 @@ class VideoPlayerView: UIView{
             let playerLayer = AVPlayerLayer(player: player)
             self.layer.addSublayer(playerLayer)
             playerLayer.frame = self.frame
-            
-            
-            
             player.play()
+            player.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "currentItem.loadedTimeRanges" {
+            activityIndicatorView.stopAnimating()
         }
     }
     
