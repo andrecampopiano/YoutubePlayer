@@ -143,9 +143,6 @@ class VideoCell: BaseCell {
         addConstraint(titleLabelHeightConstraint!)
         
         
-        
-        
-        
         //top constraint
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
         //left constraint
