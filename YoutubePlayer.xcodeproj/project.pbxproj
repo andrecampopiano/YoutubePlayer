@@ -24,6 +24,7 @@
 		6EF209CE1E81F42E00548179 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF209CD1E81F42E00548179 /* TrendingCell.swift */; };
 		6EF209D01E81FACB00548179 /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF209CF1E81FACB00548179 /* SubscriptionCell.swift */; };
 		6EF209D31E822A4400548179 /* VideoLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF209D21E822A4400548179 /* VideoLauncher.swift */; };
+		94B180FD1E83F7AF00C0869F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B180FC1E83F7AF00C0869F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		6EF209CD1E81F42E00548179 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		6EF209CF1E81FACB00548179 /* SubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		6EF209D21E822A4400548179 /* VideoLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoLauncher.swift; sourceTree = "<group>"; };
+		94B180FC1E83F7AF00C0869F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				6E90F1991E7F1B31000C9BD3 /* AppDelegate.swift */,
+				94B180FC1E83F7AF00C0869F /* Localizable.strings */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B180FD1E83F7AF00C0869F /* Localizable.strings in Resources */,
 				6E90F1A61E7F1B31000C9BD3 /* LaunchScreen.storyboard in Resources */,
 				6E90F1A51E7F1B31000C9BD3 /* Assets.xcassets in Resources */,
 				6E90F1A71E7F1B31000C9BD3 /* Main.storyboard in Resources */,
