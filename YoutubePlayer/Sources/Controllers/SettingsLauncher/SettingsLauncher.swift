@@ -20,12 +20,12 @@ class Setting :NSObject{
 
 
 enum SettingName:String{
-    case Cancel = "Cancel"
-    case Settings = "Settings"
-    case TermsPrivacy = "Terms & privacy policy"
-    case SendFeedback = "Send Feedback"
-    case Help = "Help"
-    case SwitchAccount = "Switch Account"
+    case Cancel = "title_cancel"
+    case Settings = "title_settings"
+    case TermsPrivacy = "title_terms_privacy"
+    case SendFeedback = "title_send_feedback"
+    case Help = "title_help"
+    case SwitchAccount = "title_switch_account"
 }
 
 class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{

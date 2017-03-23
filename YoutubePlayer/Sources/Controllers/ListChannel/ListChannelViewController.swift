@@ -101,7 +101,7 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     
     private func setTitleForIndex(index: Int){
         if let titleLabel = navigationItem.titleView as? UILabel{
-            titleLabel.text = "   \(titles[index])"
+            titleLabel.text = NSLocalizedString(titles[index], comment: "")
         }
     }
     

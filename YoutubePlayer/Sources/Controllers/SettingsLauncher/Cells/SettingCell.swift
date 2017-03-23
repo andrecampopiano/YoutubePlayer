@@ -22,7 +22,7 @@ class SettingCell: BaseCell {
     var setting:Setting?{
         didSet{
             if let name = setting?.name {
-                nameLabel.text = name.rawValue
+                nameLabel.text = NSLocalizedString(name.rawValue, comment:"")
             }
             if let imageName = setting?.imageName {
                 iconImageView.image = UIImage(named:imageName)?.withRenderingMode(.alwaysTemplate)
@@ -34,7 +34,7 @@ class SettingCell: BaseCell {
     let nameLabel:UILabel = {
        
         let label = UILabel()
-        label.text = "Setting"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 13)
         return label
         
