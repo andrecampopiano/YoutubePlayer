@@ -151,7 +151,13 @@ class VideoPlayerView: UIView{
                 let seconds = CMTimeGetSeconds(durationVideo)
                 let secondsText = Int(seconds) % 60
                 let minutesText = String(format: "%02d", Int(seconds) / 60)
-                videoLenghtLabel.text = "\(minutesText):\(secondsText)"
+                let horsText = String(format: "%02d", Int(seconds) / 3600)
+                if horsText != "00" {
+                    videoLenghtLabel.text = "\(horsText):\(minutesText):\(secondsText)"
+
+                }else{
+                    videoLenghtLabel.text = "\(minutesText):\(secondsText)"
+                }
                 sliderVideo.maximumValue = Float(seconds)
             }
             
