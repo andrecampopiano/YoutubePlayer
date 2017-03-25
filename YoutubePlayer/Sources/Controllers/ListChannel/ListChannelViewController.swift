@@ -16,7 +16,7 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
     let trendingCellId = "trendingCell"
     let subscriptionCellId = "subscriptionCell"
     
-    let titles = ["Home", "Trending", "Subscriptions", "Account"]
+    let titles = ["title_home", "title_trending", "title_subscriptions", "title_account"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ListChannelViewController: UICollectionViewController, UICollectionViewDel
         navigationController?.navigationBar.isTranslucent = false
         
         let titleLabel = UILabel(frame: CGRect(x:0,y: 0, width: view.frame.width - 32, height: view.frame.height))
-        titleLabel.text = "   Home"
+        titleLabel.text = NSLocalizedString("title_home", comment: "")
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         

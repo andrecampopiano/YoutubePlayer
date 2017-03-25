@@ -95,7 +95,7 @@ class VideoPlayerView: UIView{
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        setupGradientLayer()
+       // setupGradientLayer()
         
         
         setupPlayerView()
@@ -183,7 +183,7 @@ class VideoPlayerView: UIView{
         
         gradientLayer.frame = bounds 
         
-        gradientLayer.colors = [UIColor.red.cgColor, UIColor.red.cgColor]
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.red.cgColor, UIColor.red.cgColor]
         
         controlsContainerView.layer.addSublayer(gradientLayer)
         
