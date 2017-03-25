@@ -10,4 +10,15 @@
 
 //Title Menu
 
-"title_cancel" = "Cancel"
+"title_cancel" = "Cencel";
+"title_settings" = "Settings";
+"title_terms_privacy" = "Terms & privacy policy";
+"title_send_feedback" = "Send Feedback";
+"title_help" = "Help";
+"title_switch_account" = "Switch Account";
+
+//Title Menu
+"title_home" = "   Home";
+"title_trending" = "   Trending";
+"title_subscriptions" = "   Subscriptions";
+"title_account" = "   Account";

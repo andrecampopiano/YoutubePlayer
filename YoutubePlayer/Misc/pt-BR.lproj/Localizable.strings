@@ -1,0 +1,25 @@
+
+/*
+  Localizable.strings
+  YoutubePlayer
+
+  Created by André Luís  Campopiano on 23/03/17.
+  Copyright © 2017 André Campopiano. All rights reserved.
+*/
+
+
+//Title Settings Menu
+
+"title_cancel" = "Cancelar";
+"title_settings" = "Configuração";
+"title_terms_privacy" = "Termos & politicas de privacidade";
+"title_send_feedback" = "Enviar Feedback";
+"title_help" = "Ajuda";
+"title_switch_account" = "Alterar de Conta";
+
+//Title Menu
+"title_home" = "   Início";
+"title_trending" = "   Tendências";
+"title_subscriptions" = "   Assinaturas";
+"title_account" = "   Conta";
+
